@@ -43,12 +43,24 @@ npm run lint
 
 ---
 
+# Development Workflow (Localhost + Plasmic Studio)
+
+This project uses **App Hosting**. This means Plasmic Studio "embeds" your local application to allow editing with real components and styles.
+
+1.  **Run Locally:** Execute `npm run dev`.
+2.  **Plasmic Host:** Ensure your Plasmic Project settings has the **Host URL** set to `http://localhost:3000/plasmic-host`.
+3.  **Edit in Studio:** Use your custom components directly in the visual editor.
+4.  **Sync Code (Git):** After creating/modifying code components, commit and push your changes to your repository.
+5.  **Publish Design:** Only click **Publish** in Plasmic Studio after your code changes have been deployed to production.
+
+---
+
 # Development Conventions
 
 ### Plasmic Integration
 - **`plasmic-init.js`**: Central configuration for the Plasmic Loader. Add project IDs, API tokens, and register custom code components here.
 - **`pages/[[...catchall]].jsx`**: Handles all routes managed by Plasmic. Do not modify unless changing the global page-loading logic.
-- **`pages/plasmic-host.jsx`**: Special route for Plasmic Studio to "host" your app. Ensure this is configured in Plasmic project settings as the "Host URL".
+- **`pages/plasmic-host.jsx`**: Special route for Plasmic Studio to "host" your app.
 
 ### Custom Components
 When creating new React components that should be available in Plasmic:
@@ -56,10 +68,16 @@ When creating new React components that should be available in Plasmic:
 2. Register it in `plasmic-init.js` using `PLASMIC.registerComponent`.
 3. Configure the component's props so they are editable in Plasmic Studio.
 
-**Example: TagembedWidget**
-- **File:** `components/TagembedWidget.jsx`
-- **Purpose:** Embeds external social feeds.
-- **Configurable Props:** `widgetId`, `minHeight`.
+**Examples:**
+
+*   **InstagramEmbed**
+    *   **File:** `components/InstagramEmbed.jsx`
+    *   **Purpose:** Reusable Instagram post card.
+    *   **Configurable Props:** `postUrl`, `captioned`, `maxWidth`.
+*   **TagembedWidget**
+    *   **File:** `components/TagembedWidget.jsx`
+    *   **Purpose:** Embeds external social feeds.
+    *   **Configurable Props:** `widgetId`, `minHeight`.
 
 ### Styling
 - Global styles are located in `styles/globals.css`.
