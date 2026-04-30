@@ -6,6 +6,11 @@ const TagembedWidget = dynamic(
   { ssr: false }
 );
 
+const InstagramEmbed = dynamic(
+  () => import("./components/InstagramEmbed"),
+  { ssr: false }
+);
+
 export const PLASMIC = initPlasmicLoader({
   projects: [
     {
@@ -26,6 +31,27 @@ PLASMIC.registerComponent(TagembedWidget, {
     minHeight: {
       type: "string",
       defaultValue: "400px",
+    },
+  },
+});
+
+PLASMIC.registerComponent(InstagramEmbed, {
+  name: "InstagramEmbed",
+  props: {
+    postUrl: {
+      type: "string",
+      defaultValue: "https://www.instagram.com/p/DXuUa48gDWL/",
+      displayName: "URL do Post",
+    },
+    captioned: {
+      type: "boolean",
+      defaultValue: true,
+      displayName: "Exibir Legenda",
+    },
+    maxWidth: {
+      type: "number",
+      defaultValue: 540,
+      displayName: "Largura Máxima (px)",
     },
   },
 });

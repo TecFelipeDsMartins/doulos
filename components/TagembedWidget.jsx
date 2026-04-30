@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 export default function TagembedWidget({
   widgetId = "212784",
   minHeight = "400px",
+  className,
+  style,
 }) {
   const [mounted, setMounted] = useState(false);
 
@@ -24,13 +26,14 @@ export default function TagembedWidget({
 
   return (
     <div
-      className="tagembed-widget"
+      className={`${className || ""} tagembed-widget`}
       data-widget-id={widgetId}
       data-website="1"
       style={{
         width: "100%",
         minHeight: minHeight,
         overflow: "auto",
+        ...style,
       }}
     />
   );
